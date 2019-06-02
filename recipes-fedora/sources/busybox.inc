@@ -6,6 +6,8 @@ FPV_EPOCH = "1"
 REPACK_PV = "3.fc30"
 PV = "1.28.3"
 
-FEDORA_SRC_URI = "http://ftp.iij.ad.jp/pub/linux/Fedora/fedora/linux/releases/30/Everything/source/tree/Packages/b/busybox-1.28.3-3.fc30.src.rpm;name=busybox-1.28.3-3.fc30.src.rpm"
+FEDORA_SRC_URI = " \
+    ${FEDORA_MIRROR}/pub/linux/Fedora/fedora/linux/releases/${DISTRO_VERSION}/Everything/source/tree/Packages/b/busybox-1.28.3-3.fc30.src.rpm;name=busybox-1.28.3-3.fc30.src.rpm \
+"
 
 SRC_URI[busybox-1.28.3-3.fc30.src.rpm.sha256sum] = "cb03d63ee3867d406786a0e118540900f8bd9d047637501a271e82755291d23f"

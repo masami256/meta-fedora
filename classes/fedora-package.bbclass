@@ -8,9 +8,12 @@ SRC_URI = "${FEDORA_SRC_URI}"
 FEDORA_UNPACK_DIR ?= "${WORKDIR}/${BP}"
 S = "${FEDORA_UNPACK_DIR}"
 
-def test(d):
-    bb.warn("SRC_URI: %s" % d.getVar('SRC_URI'))
-    
+# rpm2cpio.sh couldn't parse fedora30's src.rpm file.
+# Add path to run our rpm2cpio.sh instead of poky's
 python () {
-    test(d)
+    layer_name = d.getVar('LAYERDIR_FEDORA_fedora', True)
+    
+    path = '%s/scripts:%s' % (layer_name, d.getVar('PATH'))
+    d.setVar('PATH', path)
 }
+

@@ -29,3 +29,6 @@ TCMODE ?= "fedy"
 require conf/distro/include/fedora-preferred-provider.inc
 
 FEDORA_MIRROR = "http://ftp.iij.ad.jp"
+
+# Use host's rpm2cpio
+HOSTTOOLS += "rpm2cpio"
