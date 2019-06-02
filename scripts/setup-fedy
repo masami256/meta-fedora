@@ -1,0 +1,40 @@
+#!/bin/bash
+
+cleanup() {
+    unset BUILDDIR BUILDDIR_SETUP_DONE REPOS SYNC_POKY POKY_REV
+}
+
+_ERROR=0
+trap '_ERROR=$?' ERR
+
+BUILDDIR="build"
+if [[ -n $1 ]]; then
+    BUILDDIR=$1
+fi
+
+BUILDDIR_SETUP_DONE=0
+if [ -f ${BUILDDIR}/conf/local.conf ]; then
+    BUILDDIR_SETUP_DONE=1
+fi
+
+REPODIR_TOP=${PWD}
+source ${REPODIR_TOP}/poky/oe-init-build-env ${BUILDDIR}
+
+if [ ${BUILDDIR_SETUP_DONE} -eq 0 ]; then
+    bitbake-layers remove-layer meta-poky
+    bitbake-layers remove-layer meta-yocto-bsp
+
+    bitbake-layers add-layer ${REPODIR_TOP}/meta-fedora
+
+    echo "DISTRO = \"fedy\"" >> conf/local.conf
+    echo "PACKAGE_CLASSES = \"package_rpm\"" >> conf/local.conf
+    echo "DL_DIR = \"\${TOPDIR}/../downloads\"" >> conf/local.conf
+fi
+
+cleanup
+
+if [ $_ERROR -ne 0 ]; then
+    echo "[*]Setup ERROR. error code $_ERROR"
+fi
+
+return $_ERROR
