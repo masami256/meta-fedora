@@ -25,10 +25,16 @@ fedora-28 \n \
 # use toolchain mode for Fedora instead of the default
 TCMODE ?= "fedy"
 
-# preferred providers and versions
-require conf/distro/include/fedora-preferred-provider.inc
-
 FEDORA_MIRROR = "http://ftp.iij.ad.jp"
 
 # Use host's rpm2cpio
 HOSTTOOLS += "rpm2cpio"
+
+# systemd
+
+# preferred providers and versions
+#require conf/distro/include/fedora-preferred-provider.inc
+DISTRO_FEATURES_append = " systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
