@@ -101,13 +101,13 @@ do_fedora_patch() {
     patch_dir="${WORKDIR}/patches"
     series="${patch_dir}/series"
 
-    bbwarn "S is ${S}"
     curr=$(pwd)
     cd ${S}
     for patch in ${patch_list};
     do
         patch -p1 < ${patch}
     done
+    cd ${curr}
 }
 
 EXPORT_FUNCTIONS do_fedora_patch
