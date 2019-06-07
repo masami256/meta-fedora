@@ -27,7 +27,8 @@ def read_contents(spec, key):
         if line.startswith(key):
             tmp = line.split(':')
             k = 0
-            if not tmp[0].endswith('e'):
+
+            if tmp[0][-1].isdigit():
                 k = int(tmp[0].replace(key, ''))
             v = ''.join(tmp[1:])
             contents[k] = v.strip()
@@ -97,9 +98,6 @@ EXPORT_FUNCTIONS do_fedora_unpack_extra
 
 do_fedora_patch() {
     patch_list=$(cat "${WORKDIR}/fedora_patches.txt")
-
-    patch_dir="${WORKDIR}/patches"
-    series="${patch_dir}/series"
 
     curr=$(pwd)
     cd ${S}
