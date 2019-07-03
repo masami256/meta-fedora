@@ -8,10 +8,14 @@ KMETA = "kernel-meta"
 
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/jwboyer/fedora.git;name=machine;branch=${KBRANCH}; \
            git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-5.0;destsuffix=${KMETA}; \
-	   file://defconfig \
+           file://defconfig \
+           file://kernel_name.cfg \
+           file://kernel_name.cfg \
 "
 
-
+#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}/files:"
+#SRC_URI += "file://kernel_name.cfg"
+     
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 SRCREV_meta ?= "31de88e51d100f2c3eefb7acb7390b0144bcfc69"
@@ -31,3 +35,7 @@ PR = "0"
 # file. Leaving it empty here ensures an early explicit build failure.
 COMPATIBLE_MACHINE = "qemuarm64|qemux86-64"
 
+do_kernel_configme_append() {
+  cat ${WORKDIR}/*.cfg >> ${B}/.config
+  cat ${WORKDIR}/*.cfg >> ${B}/../defconfig
+}

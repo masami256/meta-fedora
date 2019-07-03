@@ -14,6 +14,7 @@ INHERIT += "fedora-source"
 # currently only Fedora 28 is tested
 SANITY_TESTED_DISTROS ?= " \
 fedora-28 \n \
+fedora-29 \n \
 "
 # use toolchain mode for Fedora instead of the default
 TCMODE ?= "fedy"
