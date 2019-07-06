@@ -9,8 +9,6 @@ KMETA = "kernel-meta"
 FEDORA_KERNEL_REPO ?= "git://git.kernel.org/pub/scm/linux/kernel/git/jwboyer/fedora.git"
 SRC_URI = "${FEDORA_KERNEL_REPO};name=machine;branch=${KBRANCH}; \
            git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-5.0;destsuffix=${KMETA}; \
-           file://qemuarm64-defconfig \
-	   file://qemux86-64-defconfig \
 "
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
