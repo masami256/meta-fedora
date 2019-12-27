@@ -7,16 +7,13 @@ inherit fedora-package
 require recipes-fedora/sources/busybox.inc
 
 FILESPATH_append = ":${COREBASE}/meta/recipes-core/busybox/busybox:${COREBASE}/meta/recipes-core/busybox/files:"
-
-SRC_URI += "file://0001-Rebase-busybox-udhcpc-no_deconfig.patch \
-           file://find-touchscreen.sh \
+SRC_URI += "file://find-touchscreen.sh \
            file://busybox-cron \
            file://busybox-httpd \
            file://busybox-udhcpd \
            file://default.script \
            file://simple.script \
            file://hwclock.sh \
-           file://mount.busybox \
            file://syslog \
            file://syslog-startup.conf \
            file://syslog.conf \
@@ -24,7 +21,6 @@ SRC_URI += "file://0001-Rebase-busybox-udhcpc-no_deconfig.patch \
            file://mdev \
            file://mdev.conf \
            file://mdev-mount.sh \
-           file://umount.busybox \
            file://defconfig \
            file://busybox-syslog.service.in \
            file://busybox-klogd.service.in \
@@ -44,12 +40,11 @@ SRC_URI += "file://0001-Rebase-busybox-udhcpc-no_deconfig.patch \
            ${@["", "file://init.cfg"][(d.getVar('VIRTUAL-RUNTIME_init_manager') == 'busybox')]} \
            ${@["", "file://mdev.cfg"][(d.getVar('VIRTUAL-RUNTIME_dev_manager') == 'busybox-mdev')]} \
            file://syslog.cfg \
-           file://inittab \
+           file://unicode.cfg \
            file://rcS \
            file://rcK \
            file://makefile-libbb-race.patch \
-           file://0001-busybox-rebase-patch-testsuite-check-uudecode-before.patch \
            file://0001-testsuite-use-www.example.org-for-wget-test-cases.patch \
            file://0001-du-l-works-fix-to-use-145-instead-of-144.patch \
-"
+	   "
 
