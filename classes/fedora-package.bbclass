@@ -61,7 +61,7 @@ def read_rpm_spec_file(d, workdir, pkgname):
     spec_path = '%s/%s.spec' % (workdir, pkgname)
 
     macros = {
-        '_sourcedir': '%s/%s' % (workdir, pkgname)
+        '_sourcedir': '%s/' % workdir
     }
 
     for macro in macros:
